@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+  Auction Detail
+{% endblock %}
+
+{% block content %}
+  <section class="auction-detail">
+    <h1>{{ auction.item | title }}</h1>
+    <img id="auction-image" class="auction-image" src="">
+    <div class="auction-seller">
+      Sold by: <span class="username">{{ auction.seller }}</span>
+    </div>
+    <div class="auction-current-bid">{{ auction.current_bid }}</div>
+    <div class="auction-countdown">{{ auction.close_time.isoformat() }}</div>
+    <form action="/bid/{{ auction.id }}">
+      <label>Amount: <input name="amount" type="number" value="{{ auction.current_bid + auction.min_bid | int }}"></label>
+      <button type="submit">Bid</button>
+    </form>
+  </section>
+{% endblock %}

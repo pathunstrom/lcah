@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+  Create Auction
+{% endblock %}
+
+{% block content %}
+  <form action={{ url_for("auction_home") }}>
+    <label>Minimum Bid: <input name="min-bid" type="number"></label>
+    <label>Item: <input name="item"></label>
+    <label>
+      Run Time:
+      <select name="time">
+        <option value="1">1 Hour</option>
+        <option value="2">2 Hours</option>
+        <option value="6">6 Hours</option>
+        <option value="12">12 Hours</option>
+        <option value="24">1 Day</option>
+      </select></label>
+    <input name="user" type="hidden" value="pathunstrom">
+    <button type="submit" formmethod="post">Start!</button>
+  </form>
+{% endblock %}

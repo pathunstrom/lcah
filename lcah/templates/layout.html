@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LCAH</title>
+  <link rel="stylesheet" type="text/css" href="/static/layout.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1 class="app-title">LootCrate Auction House</h1>
+  </header>
+  <nav class="app-nav">
+    <ul>
+      <li>
+        <a href={{ url_for('home') }}>Home</a>
+      </li>
+      <li>Inventory</li>
+      <li>
+        <a href={{ url_for('auction_home') }}>Auctions</a>
+      </li>
+    </ul>
+  </nav>
+  <h1 class="section-title">
+    {%- block title -%}
+      Welcome!
+    {%- endblock -%}
+  </h1>
+  <div class="content">
+    {% block content %}
+      <section class="auction-highlight">
+        <header>
+          <h1>Top Auctions Now</h1>
+        </header>
+        <p>This is placeholder.</p>
+      </section>
+      <section class="about">
+        <h1>How it works!</h1>
+        <p>This is a placeholder.</p>
+      </section>
+    {% endblock %}
+  </div>
+  {% block scripts %}
+  {% endblock %}
+  </body>
+</html>

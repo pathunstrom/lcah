@@ -1,0 +1,62 @@
+body {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+    display: grid;
+    grid-template: "header" auto
+                   "title"  auto
+                   "body"   auto / 1fr;
+}
+
+h1 {
+    margin: 0;
+}
+
+.app-header {
+    grid-area: header;
+    background-color: red;
+    padding: 0 1em;
+    margin: 0;
+}
+
+.app-nav {
+    position: fixed;
+    bottom: 0;
+    background-color: red;
+}
+
+.app-nav>ul {
+    display: flex;
+    padding: 1em;
+    justify-content: space-around;
+    list-style: none;
+    width: 100vw;
+}
+
+.app-nav li {
+    padding: 0.5em;
+    margin: .25em;
+}
+
+.app-title {
+    padding: 0.5em;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.content {
+    grid-area: body;
+    padding: 1em;
+}
+
+.section-title {
+    grid-area: title;
+    padding: .25em .25em .25em .5em;
+    margin: .5em 0;
+    text-decoration: underline;
+}
+
+.content section, .content article {
+    margin-bottom: 2em;
+}
