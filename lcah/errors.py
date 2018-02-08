@@ -1,1 +1,6 @@
-class ObjectNotFound(Exception): pass
+class ObjectAlreadyCreated(Exception):
+    pass
+
+
+class ObjectNotFound(Exception):
+    pass

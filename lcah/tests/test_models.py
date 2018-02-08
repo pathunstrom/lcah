@@ -1,8 +1,13 @@
 from datetime import datetime
 from unittest import mock
 
+import pytest
 from bson.objectid import ObjectId
+from pymongo.collection import Collection
+from pymongo.database import Database
 from pytest import fixture
+
+from lcah.errors import ObjectAlreadyCreated
 from lcah.models import Auction
 from lcah.models import Model
 
@@ -36,7 +41,7 @@ def test_model_repr():
     assert repr(MyModel("abc", "false", "true")) == "MyModel(_id='abc', stop='false', go='true')"
 
 
-def test_auto_json():
+def test_model_json():
     assert MyModel(None, False, True).to_json() == {"stop": False, "go": True}
     assert MyModel("abc", "false", "true").to_json() == {"_id": "abc", "stop": "false", "go": "true"}
 

@@ -6,6 +6,7 @@ from uuid import uuid4 as uuid
 from bson.objectid import ObjectId
 
 from lcah import app
+from lcah.errors import ObjectAlreadyCreated
 from lcah.errors import ObjectNotFound
 
 
@@ -13,7 +14,6 @@ class Model:
 
     _id = None
     collection = "test"
-    database = "lcah"  # TODO: Use Environment Variable.
 
     def __repr__(self):
         parameters = ", ".join(f"{k}={v!r}" for k, v in self.items())
@@ -32,6 +32,12 @@ class Model:
     @property
     def id(self):
         return self._id
+
+    def create(self, database):
+        if self.id is not None:
+            raise ObjectAlreadyCreated
+        result = database[self.collection].insert_one(self.to_json())
+        self._id = result.inserted_id
 
 
 class Auction(Model):
