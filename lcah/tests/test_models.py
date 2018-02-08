@@ -1,6 +1,8 @@
 from datetime import datetime
+from unittest import mock
 
 from bson.objectid import ObjectId
+from pytest import fixture
 from lcah.models import Auction
 from lcah.models import Model
 
@@ -17,7 +19,19 @@ class MyModel(Model):
         self.go = go
 
 
-def test_auto_repr():
+@fixture
+def mocks():
+    mock_response = mock.Mock()
+    mock_response.inserted_id = ObjectId(sample_id)
+    mock_collection = mock.MagicMock(spec=Collection)
+    mock_collection.insert_one.return_value = mock_response
+    mock_database = mock.MagicMock(spec=Database)
+    mock_database.__getitem__.return_value = mock_collection
+
+    return mock_database, mock_collection, mock_response
+
+
+def test_model_repr():
     assert repr(MyModel(None, False, True)) == "MyModel(_id=None, stop=False, go=True)"
     assert repr(MyModel("abc", "false", "true")) == "MyModel(_id='abc', stop='false', go='true')"
 
