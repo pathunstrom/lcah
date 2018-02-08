@@ -14,3 +14,4 @@ mongo = pymongo.MongoClient()
 app.logger.setLevel(DEBUG)
 
 import lcah.views
+import lcah.filters

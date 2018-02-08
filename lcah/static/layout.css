@@ -4,9 +4,9 @@ body {
     min-height: 100vh;
     font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
     display: grid;
-    grid-template: "header" auto
-                   "title"  auto
-                   "body"   auto / 1fr;
+    grid-template: "header" min-content
+                   "title" min-content
+                   "body" auto / 1fr;
 }
 
 h1 {
@@ -16,6 +16,7 @@ h1 {
 .app-header {
     grid-area: header;
     background-color: red;
+    font-size: .675em;
     padding: 0 1em;
     margin: 0;
 }

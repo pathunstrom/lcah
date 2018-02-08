@@ -20,14 +20,14 @@ def auction_home():
     if request.method == "POST":
         return handlers.create_auction(request, app, mongo)
     else:
-        return render_template("auctions.html")
+        return render_template("auctions.html", auctions=Auction.get_all(mongo))
 
 
 @app.route("/auction/<identifier>")
 @catch_object_not_found(app)
 def auction_detail(identifier):
     app.logger.debug(f"Identifier: {identifier}")
-    auction = Auction.get(mongo, identifier)
+    auction = Auction.get(mongo, api_key=identifier)
     return render_template("auction.html", auction=auction)
 
 

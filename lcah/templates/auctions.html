@@ -1,9 +1,14 @@
 {% extends "layout.html" %}
+{% import "macros.html" as macros %}
+
+{% block title %}
+  Auctions Home
+{% endblock %}
 
 {% block content %}
-<section>
-  <header><h1>Auctions Home</h1></header>
-  <p>This is placeholder</p>
-</section>
-
+  {% for auction in auctions %}
+    <a href="{{ url_for("auction_detail", identifier=auction.api_id) }}">
+      {{ macros.auction(auction) }}
+    </a>
+  {% endfor %}
 {% endblock %}

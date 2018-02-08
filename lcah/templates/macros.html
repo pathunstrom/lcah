@@ -1,0 +1,11 @@
+{% macro auction(_auction) %}
+  <section class="auction">
+    <h1>{{ _auction.item | title }}</h1>
+    <img id="auction-image" class="auction-image" src="">
+    <div class="auction-seller">
+      Sold by: <span class="username">{{ _auction.seller }}</span>
+    </div>
+    <div class="auction-current-bid">{{ _auction.current_bid }}</div>
+    <div class="auction-countdown">{{ _auction.close_time | http_date }}</div>
+  </section>
+{% endmacro %}

@@ -12,7 +12,7 @@ def create_auction(request, app, db_connection):
     item = request.form["item"]
     minimum_bid = int(request.form["min-bid"])
     hours = int(request.form["time"])
-    end = (datetime.utcnow() + timedelta(hours=hours)).timestamp()
+    end = datetime.utcnow() + timedelta(hours=hours)
     auction = Auction(item=item, seller=user, current_bid=minimum_bid,
                       close_time=end)
     auction.create(db_connection)
