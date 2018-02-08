@@ -41,6 +41,20 @@ def test_auto_json():
     assert MyModel("abc", "false", "true").to_json() == {"_id": "abc", "stop": "false", "go": "true"}
 
 
+def test_model_create(mocks):
+    mock_database, mock_collection, mock_response = mocks
+
+    my_model = MyModel(None, True, False)
+    my_model.create(mock_database)
+
+    mock_database.__getitem__.assert_called_with("test")
+    mock_collection.insert_one.assert_called_with({"stop": True, "go": False})
+    assert my_model.id == ObjectId(sample_id)
+
+    with pytest.raises(ObjectAlreadyCreated):
+        my_model.create(mock_database)
+
+
 def test_auction_repr():
     dt = datetime.fromtimestamp(0)
     auction = Auction(_id=None, item="common", seller="pathunstrom",
