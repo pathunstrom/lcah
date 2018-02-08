@@ -1,7 +1,10 @@
 from datetime import datetime
 
+from bson.objectid import ObjectId
 from lcah.models import Auction
 from lcah.models import Model
+
+sample_id = '5a7cc692b26565317881e8e1'
 
 
 class MyModel(Model):
@@ -36,9 +39,21 @@ def test_auction_to_json():
     auction = Auction(_id=None, item="common", seller="pathunstrom",
                       current_bid=1000, api_id="5", close_time=dt)
     assert auction.to_json() == {"item": "common",
-                                 "seller": "pathunstrom", "current_bid": 1000,
+                                 "seller": "pathunstrom",
+                                 "current_bid": 1000,
                                  "api_id": '5',
                                  "close_time": datetime.fromtimestamp(0)}
+
+    auction = Auction(_id=ObjectId(sample_id), item="uncommon",
+                      seller="pathunstrom", current_bid=500, api_id="40",
+                      close_time=dt)
+    assert auction.to_json() == {"_id": ObjectId(sample_id),
+                                 "item": "uncommon",
+                                 "seller": "pathunstrom",
+                                 "current_bid": 500,
+                                 "api_id": "40",
+                                 "close_time": datetime.fromtimestamp(0)}
+
 
 def test_auction_create():
     pass
